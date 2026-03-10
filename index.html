@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pomodoro</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app__header">
+        <div class="app__brand">Pomodoro</div>
+        <div class="app__mode" id="modeLabel">专注</div>
+      </header>
+
+      <section class="timer">
+        <div class="timer__ring">
+          <svg viewBox="0 0 220 220" aria-hidden="true">
+            <circle class="ring__bg" cx="110" cy="110" r="96" />
+            <circle class="ring__progress" cx="110" cy="110" r="96" />
+          </svg>
+          <div class="timer__content">
+            <div class="timer__time" id="timeDisplay">25:00</div>
+            <div class="timer__cycle" id="cycleDisplay">第 1 轮 · 目标 4 轮</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="controls">
+        <button class="btn btn--primary" id="toggleBtn">开始</button>
+        <button class="btn" id="resetBtn">重置</button>
+      </section>
+
+      <section class="settings">
+        <div class="settings__item">
+          <label>专注</label>
+          <div class="settings__input">
+            <button class="step" data-action="focus" data-step="-1">-</button>
+            <span id="focusValue">25</span>
+            <button class="step" data-action="focus" data-step="1">+</button>
+          </div>
+        </div>
+        <div class="settings__item">
+          <label>短休息</label>
+          <div class="settings__input">
+            <button class="step" data-action="short" data-step="-1">-</button>
+            <span id="shortValue">5</span>
+            <button class="step" data-action="short" data-step="1">+</button>
+          </div>
+        </div>
+        <div class="settings__item">
+          <label>长休息</label>
+          <div class="settings__input">
+            <button class="step" data-action="long" data-step="-1">-</button>
+            <span id="longValue">15</span>
+            <button class="step" data-action="long" data-step="1">+</button>
+          </div>
+        </div>
+        <div class="settings__item">
+          <label>长休息间隔</label>
+          <div class="settings__input">
+            <button class="step" data-action="interval" data-step="-1">-</button>
+            <span id="intervalValue">4</span>
+            <button class="step" data-action="interval" data-step="1">+</button>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span id="statusLabel">准备开始你的专注时间。</span>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
