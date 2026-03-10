@@ -22,6 +22,7 @@ const elements = {
   longValue: document.getElementById("longValue"),
   intervalValue: document.getElementById("intervalValue"),
   progressRing: document.querySelector(".ring__progress"),
+  modeTabs: document.querySelectorAll(".tab"),
 };
 
 const totalRingLength = 2 * Math.PI * 96;
@@ -54,6 +55,10 @@ function updateDisplay() {
   elements.longValue.textContent = state.longMinutes;
   elements.intervalValue.textContent = state.longInterval;
 
+  elements.modeTabs.forEach((tab) => {
+    tab.classList.toggle("tab--active", tab.dataset.mode === state.mode);
+  });
+
   const duration = getCurrentDuration();
   const progress = duration === 0 ? 0 : state.remainingSeconds / duration;
   elements.progressRing.style.strokeDasharray = totalRingLength;
@@ -69,6 +74,9 @@ function getCurrentDuration() {
 function setMode(nextMode) {
   state.mode = nextMode;
   state.remainingSeconds = getCurrentDuration();
+  if (!state.isRunning) {
+    elements.toggleBtn.textContent = "开始";
+  }
   updateDisplay();
 }
 
@@ -170,6 +178,13 @@ function updateSetting(type, step) {
 function bindEvents() {
   elements.toggleBtn.addEventListener("click", toggleTimer);
   elements.resetBtn.addEventListener("click", resetTimer);
+
+  elements.modeTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      if (state.isRunning) return;
+      setMode(tab.dataset.mode);
+    });
+  });
 
   document.querySelectorAll(".step").forEach((btn) => {
     btn.addEventListener("click", () => {

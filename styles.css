@@ -59,6 +59,33 @@ body {
   font-weight: 600;
 }
 
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: #f4f6fb;
+  padding: 6px;
+  border-radius: 16px;
+  gap: 6px;
+}
+
+.tab {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  padding: 10px 8px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab--active {
+  background: white;
+  color: var(--primary-strong);
+  box-shadow: 0 8px 18px rgba(26, 35, 53, 0.08);
+}
+
 .timer {
   display: flex;
   justify-content: center;
