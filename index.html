@@ -37,37 +37,44 @@
         <button class="btn" id="resetBtn">重置</button>
       </section>
 
-      <section class="settings">
-        <div class="settings__item">
-          <label>专注</label>
-          <div class="settings__input">
+      <section class="panels">
+        <div class="panel panel--active" data-panel="focus">
+          <div class="panel__title">专注模式</div>
+          <p class="panel__desc">设定专注时长，保持高效专注。</p>
+          <div class="panel__control">
             <button class="step" data-action="focus" data-step="-1">-</button>
             <span id="focusValue">25</span>
+            <span class="panel__unit">分钟</span>
             <button class="step" data-action="focus" data-step="1">+</button>
           </div>
         </div>
-        <div class="settings__item">
-          <label>短休息</label>
-          <div class="settings__input">
+        <div class="panel" data-panel="short">
+          <div class="panel__title">短休息模式</div>
+          <p class="panel__desc">快速补能，准备进入下一轮。</p>
+          <div class="panel__control">
             <button class="step" data-action="short" data-step="-1">-</button>
             <span id="shortValue">5</span>
+            <span class="panel__unit">分钟</span>
             <button class="step" data-action="short" data-step="1">+</button>
           </div>
         </div>
-        <div class="settings__item">
-          <label>长休息</label>
-          <div class="settings__input">
+        <div class="panel" data-panel="long">
+          <div class="panel__title">长休息模式</div>
+          <p class="panel__desc">完成一轮后进入长休息。</p>
+          <div class="panel__control">
             <button class="step" data-action="long" data-step="-1">-</button>
             <span id="longValue">15</span>
+            <span class="panel__unit">分钟</span>
             <button class="step" data-action="long" data-step="1">+</button>
           </div>
-        </div>
-        <div class="settings__item">
-          <label>长休息间隔</label>
-          <div class="settings__input">
-            <button class="step" data-action="interval" data-step="-1">-</button>
-            <span id="intervalValue">4</span>
-            <button class="step" data-action="interval" data-step="1">+</button>
+          <div class="panel__meta">
+            <span>长休息间隔</span>
+            <div class="panel__control panel__control--mini">
+              <button class="step" data-action="interval" data-step="-1">-</button>
+              <span id="intervalValue">4</span>
+              <span class="panel__unit">轮</span>
+              <button class="step" data-action="interval" data-step="1">+</button>
+            </div>
           </div>
         </div>
       </section>

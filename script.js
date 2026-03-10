@@ -23,6 +23,7 @@ const elements = {
   intervalValue: document.getElementById("intervalValue"),
   progressRing: document.querySelector(".ring__progress"),
   modeTabs: document.querySelectorAll(".tab"),
+  panels: document.querySelectorAll(".panel"),
 };
 
 const totalRingLength = 2 * Math.PI * 96;
@@ -59,6 +60,10 @@ function updateDisplay() {
     tab.classList.toggle("tab--active", tab.dataset.mode === state.mode);
   });
 
+  elements.panels.forEach((panel) => {
+    panel.classList.toggle("panel--active", panel.dataset.panel === state.mode);
+  });
+
   const duration = getCurrentDuration();
   const progress = duration === 0 ? 0 : state.remainingSeconds / duration;
   elements.progressRing.style.strokeDasharray = totalRingLength;
@@ -72,11 +77,12 @@ function getCurrentDuration() {
 }
 
 function setMode(nextMode) {
+  if (state.isRunning && nextMode !== state.mode) {
+    pauseTimer();
+  }
   state.mode = nextMode;
   state.remainingSeconds = getCurrentDuration();
-  if (!state.isRunning) {
-    elements.toggleBtn.textContent = "开始";
-  }
+  elements.toggleBtn.textContent = "开始";
   updateDisplay();
 }
 
@@ -181,7 +187,6 @@ function bindEvents() {
 
   elements.modeTabs.forEach((tab) => {
     tab.addEventListener("click", () => {
-      if (state.isRunning) return;
       setMode(tab.dataset.mode);
     });
   });
